@@ -8,8 +8,29 @@ async function guard() {
   return user;
 }
 
+async function ensureMediaSlots() {
+  const slots = [
+    { key: "logo", label: "Ana logo (header)" },
+    { key: "logoLight", label: "Açık zemin / footer logo (opsiyonel)" },
+    { key: "favicon", label: "Favicon (tarayıcı ikonu)" },
+    { key: "hero", label: "Ana sayfa hero görseli" },
+    { key: "about", label: "Hakkımızda görseli" },
+    { key: "product1", label: "Ürün görseli 1" },
+    { key: "product2", label: "Ürün görseli 2" },
+    { key: "product3", label: "Ürün görseli 3" },
+  ];
+  for (const slot of slots) {
+    await prisma.mediaAsset.upsert({
+      where: { key: slot.key },
+      update: { label: slot.label },
+      create: { key: slot.key, label: slot.label, url: "" },
+    });
+  }
+}
+
 export async function GET() {
   if (!(await guard())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  await ensureMediaSlots();
   const [nav, stats, steps, legal, media, messages] = await Promise.all([
     prisma.navItem.findMany({ orderBy: { sortOrder: "asc" } }),
     prisma.stat.findMany({ orderBy: { sortOrder: "asc" } }),

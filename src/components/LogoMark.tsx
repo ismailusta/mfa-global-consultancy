@@ -2,9 +2,31 @@ type LogoProps = {
   shortName: string;
   variant?: "light" | "dark";
   size?: number;
+  imageUrl?: string | null;
+  alt?: string;
 };
 
-export function LogoMark({ shortName, variant = "dark", size = 48 }: LogoProps) {
+export function LogoMark({ shortName, variant = "dark", size = 48, imageUrl, alt }: LogoProps) {
+  if (imageUrl) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={imageUrl}
+        alt={alt || shortName}
+        width={size}
+        height={size}
+        style={{
+          width: size,
+          height: size,
+          objectFit: "contain",
+          flex: "0 0 auto",
+          display: "block",
+          borderRadius: 8,
+        }}
+      />
+    );
+  }
+
   const bg = variant === "dark" ? "#10243f" : "#ffffff";
   const ring = variant === "dark" ? "#43587a" : "#b9c3d1";
   const ring2 = variant === "dark" ? "#2c4166" : "#d3dae3";

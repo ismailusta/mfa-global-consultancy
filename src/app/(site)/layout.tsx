@@ -11,14 +11,16 @@ import {
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const data = await getSiteData();
   const s = data.settings;
-  const logo = data.media.hero?.url || s.ogImageUrl || null;
+  const logoUrl = data.media.logo?.url || null;
+  const logoLightUrl = data.media.logoLight?.url || logoUrl;
+  const brandLogo = logoUrl || data.media.favicon?.url || data.media.hero?.url || s.ogImageUrl || null;
 
   return (
     <div
       lang={data.locale}
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#fff" }}
     >
-      <JsonLd data={organizationJsonLd(s, logo)} />
+      <JsonLd data={organizationJsonLd(s, brandLogo)} />
       <JsonLd data={websiteJsonLd(s)} />
       <JsonLd data={professionalServiceJsonLd(s)} />
       <SiteHeader
@@ -31,6 +33,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         nav={data.nav}
         locale={data.locale}
         enableTr={s.enableTr}
+        logoUrl={logoUrl}
       />
       <main style={{ flex: 1 }}>{children}</main>
       <SiteFooter
@@ -39,6 +42,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         footerNote={s.footerNote}
         copyrightText={s.copyrightText}
         disclaimerLine={s.disclaimerLine}
+        logoUrl={logoLightUrl}
       />
     </div>
   );

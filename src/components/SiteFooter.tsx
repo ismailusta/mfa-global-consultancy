@@ -7,9 +7,17 @@ type Props = {
   footerNote: string;
   copyrightText: string;
   disclaimerLine: string;
+  logoUrl?: string | null;
 };
 
-export function SiteFooter({ companyName, shortName, footerNote, copyrightText, disclaimerLine }: Props) {
+export function SiteFooter({
+  companyName,
+  shortName,
+  footerNote,
+  copyrightText,
+  disclaimerLine,
+  logoUrl,
+}: Props) {
   const lines = footerNote.split("\n");
   const brandLines = companyName.includes("CONSULTANCY")
     ? ["MFA GLOBAL", "CONSULTANCY LLC"]
@@ -20,7 +28,7 @@ export function SiteFooter({ companyName, shortName, footerNote, copyrightText, 
       <div className="container" style={{ paddingTop: 64, paddingBottom: 40, display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 48 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-            <LogoMark shortName={shortName} variant="light" size={44} />
+            <LogoMark shortName={shortName} variant="light" size={44} imageUrl={logoUrl} alt={companyName} />
             <div style={{ fontFamily: "var(--serif)", fontSize: 16, color: "#fff", lineHeight: 1.3 }}>
               {brandLines.map((l) => (
                 <div key={l}>{l}</div>

@@ -56,7 +56,8 @@ export default function AdminMediaPage() {
     <AdminShellClient active="/admin/media">
       <h1 style={{ fontFamily: "var(--serif)", fontSize: 32, margin: 0, color: "var(--navy)" }}>Medya</h1>
       <p style={{ color: "var(--muted)", marginTop: 8 }}>
-        Görselleri Supabase Storage&apos;a yükleyin veya URL yapıştırıp kaydedin.
+        Logo, favicon ve sayfa görsellerini buradan yükleyin. <strong>logo</strong> header&apos;da,{" "}
+        <strong>favicon</strong> tarayıcı sekmesinde görünür.
       </p>
       {msg && <div style={{ color: "var(--gold)", marginTop: 10 }}>{msg}</div>}
       <div style={{ display: "grid", gap: 14, marginTop: 20 }}>

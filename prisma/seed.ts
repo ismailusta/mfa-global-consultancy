@@ -518,6 +518,9 @@ async function main() {
   }
 
   const media = [
+    { key: "logo", label: "Ana logo (header)" },
+    { key: "logoLight", label: "Açık zemin / footer logo (opsiyonel)" },
+    { key: "favicon", label: "Favicon (tarayıcı ikonu)" },
     { key: "hero", label: "[ image: office / team photograph ]" },
     { key: "about", label: "[ image: workplace photograph ]" },
     { key: "product1", label: "[ product shot 1 ]" },

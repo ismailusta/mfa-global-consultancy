@@ -18,6 +18,7 @@ type Props = {
   nav: NavItem[];
   locale: string;
   enableTr: boolean;
+  logoUrl?: string | null;
 };
 
 export function SiteHeader({
@@ -30,6 +31,7 @@ export function SiteHeader({
   nav,
   locale,
   enableTr,
+  logoUrl,
 }: Props) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -82,7 +84,7 @@ export function SiteHeader({
           }}
         >
           <Link href="/" style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px 0", flex: "0 0 auto" }}>
-            <LogoMark shortName={shortName} />
+            <LogoMark shortName={shortName} imageUrl={logoUrl} alt={companyName} />
             <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
               <div
                 style={{
