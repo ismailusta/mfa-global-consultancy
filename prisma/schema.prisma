@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+model SiteSettings {
+  id String @id @default("main")
+
+  companyName      String
+  companyShortName String
+  tagline          String
+
+  showTopBar Boolean @default(true)
+  showStats  Boolean @default(true)
+  topBarLeft String
+  topBarRight String
+
+  email            String
+  phone            String
+  registeredAddress String
+  businessAddress  String
+  jurisdiction     String
+  entityType       String
+  legalName        String
+  ein              String
+  businessHours    String
+
+  footerNote     String
+  copyrightText  String
+  disclaimerLine String
+
+  heroEyebrow      String
+  heroTitle        String
+  heroText         String
+  heroCtaPrimary   String
+  heroCtaSecondary String
+  heroImageLabel   String
+
+  homeServicesEyebrow String
+  homeServicesTitle   String
+  homeServicesIntro   String
+
+  howWeWorkTitle String
+  howWeWorkP1    String
+  howWeWorkP2    String
+
+  ctaTitle  String
+  ctaText   String
+  ctaButton String
+
+  aboutEyebrow   String
+  aboutTitle     String
+  aboutParagraphs String
+  aboutAsideNote String
+  aboutImageLabel String
+
+  servicesEyebrow String
+  servicesTitle   String
+  servicesIntro   String
+
+  commerceEyebrow        String
+  commerceTitle          String
+  commerceIntro          String
+  commerceCategories     String
+  commerceChannels       String
+  commerceProcessTitle   String
+  commerceProcessBody    String
+  commercePaymentsTitle  String
+  commercePaymentsBody   String
+
+  visaEyebrow      String
+  visaTitle        String
+  visaIntro        String
+  visaNotice       String
+  visaAssistTitle  String
+  visaAssistPoints String
+  visaDocTitle     String
+  visaDocPoints    String
+
+  contactEyebrow   String
+  contactTitle     String
+  contactFormNote  String
+
+  legalUpdatedAt String
+
+  // SEO
+  siteUrl            String @default("https://mfaglobalconsultancy.com")
+  seoTitle           String @default("MFA Global Consultancy LLC | Visa, Documents & E-Commerce")
+  seoDescription     String @default("MFA Global Consultancy LLC provides administrative support for electronic applications, document preparation, and online commerce services worldwide.")
+  seoKeywords        String @default("MFA Global Consultancy, visa application assistance, document preparation, e-commerce, Wyoming LLC")
+  ogImageUrl         String @default("")
+  twitterHandle      String @default("")
+  googleVerification String @default("")
+  bingVerification   String @default("")
+  defaultLocale      String @default("en")
+  enableTr           Boolean @default(true)
+
+  updatedAt DateTime @updatedAt
+}
+
+model Translation {
+  id     String @id @default(cuid())
+  locale String
+  key    String
+  value  String
+
+  @@unique([locale, key])
+  @@index([locale])
+}
+
+model NavItem {
+  id        String  @id @default(cuid())
+  label     String
+  href      String
+  sortOrder Int
+  visible   Boolean @default(true)
+}
+
+model Stat {
+  id        String @id @default(cuid())
+  value     String
+  label     String
+  sortOrder Int
+}
+
+model ProcessStep {
+  id        String @id @default(cuid())
+  code      String
+  text      String
+  sortOrder Int
+  section   String
+}
+
+model Service {
+  id        String  @id @default(cuid())
+  number    String
+  title     String
+  summary   String
+  body      String
+  points    String
+  sortOrder Int
+  published Boolean @default(true)
+}
+
+model LegalPage {
+  id      String @id @default(cuid())
+  slug    String @unique
+  title   String
+  content String
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model MediaAsset {
+  id    String  @id @default(cuid())
+  key   String  @unique
+  url   String  @default("")
+  alt   String?
+  label String?
+}

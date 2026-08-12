@@ -1,0 +1,138 @@
+import { cookies } from "next/headers";
+
+export type Locale = "en" | "tr";
+
+export const LOCALES: Locale[] = ["en", "tr"];
+
+export const SETTING_TRANSLATION_KEYS = [
+  "tagline",
+  "topBarLeft",
+  "topBarRight",
+  "heroEyebrow",
+  "heroTitle",
+  "heroText",
+  "heroCtaPrimary",
+  "heroCtaSecondary",
+  "homeServicesEyebrow",
+  "homeServicesTitle",
+  "homeServicesIntro",
+  "howWeWorkTitle",
+  "howWeWorkP1",
+  "howWeWorkP2",
+  "ctaTitle",
+  "ctaText",
+  "ctaButton",
+  "aboutEyebrow",
+  "aboutTitle",
+  "aboutParagraphs",
+  "aboutAsideNote",
+  "servicesEyebrow",
+  "servicesTitle",
+  "servicesIntro",
+  "commerceEyebrow",
+  "commerceTitle",
+  "commerceIntro",
+  "commerceCategories",
+  "commerceChannels",
+  "commerceProcessTitle",
+  "commerceProcessBody",
+  "commercePaymentsTitle",
+  "commercePaymentsBody",
+  "visaEyebrow",
+  "visaTitle",
+  "visaIntro",
+  "visaNotice",
+  "visaAssistTitle",
+  "visaAssistPoints",
+  "visaDocTitle",
+  "visaDocPoints",
+  "contactEyebrow",
+  "contactTitle",
+  "contactFormNote",
+  "footerNote",
+  "copyrightText",
+  "disclaimerLine",
+  "seoTitle",
+  "seoDescription",
+  "businessHours",
+  "entityType",
+  "jurisdiction",
+] as const;
+
+export const SETTING_KEY_LABELS_TR: Record<string, string> = {
+  tagline: "Slogan",
+  topBarLeft: "Üst bar sol",
+  topBarRight: "Üst bar sağ",
+  heroEyebrow: "Hero üst yazı",
+  heroTitle: "Hero başlık",
+  heroText: "Hero metin",
+  heroCtaPrimary: "Hero birincil buton",
+  heroCtaSecondary: "Hero ikincil buton",
+  homeServicesEyebrow: "Ana sayfa hizmetler üst yazı",
+  homeServicesTitle: "Ana sayfa hizmetler başlık",
+  homeServicesIntro: "Ana sayfa hizmetler intro",
+  howWeWorkTitle: "Nasıl çalışıyoruz başlık",
+  howWeWorkP1: "Nasıl çalışıyoruz paragraf 1",
+  howWeWorkP2: "Nasıl çalışıyoruz paragraf 2",
+  ctaTitle: "CTA başlık",
+  ctaText: "CTA metin",
+  ctaButton: "CTA buton",
+  aboutEyebrow: "Hakkımızda üst yazı",
+  aboutTitle: "Hakkımızda başlık",
+  aboutParagraphs: "Hakkımızda paragraflar (JSON)",
+  aboutAsideNote: "Hakkımızda yan not",
+  servicesEyebrow: "Hizmetler üst yazı",
+  servicesTitle: "Hizmetler başlık",
+  servicesIntro: "Hizmetler intro",
+  commerceEyebrow: "E-ticaret üst yazı",
+  commerceTitle: "E-ticaret başlık",
+  commerceIntro: "E-ticaret intro",
+  commerceCategories: "Ürün kategorileri (JSON)",
+  commerceChannels: "Satış kanalları (JSON)",
+  commerceProcessTitle: "Sipariş süreci başlık",
+  commerceProcessBody: "Sipariş süreci metin",
+  commercePaymentsTitle: "Ödeme başlık",
+  commercePaymentsBody: "Ödeme metin",
+  visaEyebrow: "Vize üst yazı",
+  visaTitle: "Vize başlık",
+  visaIntro: "Vize intro",
+  visaNotice: "Vize uyarı metni",
+  visaAssistTitle: "Vize destek başlık",
+  visaAssistPoints: "Vize destek maddeleri (JSON)",
+  visaDocTitle: "Belge hazırlama başlık",
+  visaDocPoints: "Belge hazırlama maddeleri (JSON)",
+  contactEyebrow: "İletişim üst yazı",
+  contactTitle: "İletişim başlık",
+  contactFormNote: "Form notu",
+  footerNote: "Footer notu",
+  copyrightText: "Telif metni",
+  disclaimerLine: "Uyarı satırı",
+  seoTitle: "SEO başlık",
+  seoDescription: "SEO açıklama",
+  businessHours: "Çalışma saatleri",
+  entityType: "Şirket tipi",
+  jurisdiction: "Yargı yetkisi",
+};
+
+export async function getRequestLocale(defaultLocale: Locale = "en"): Promise<Locale> {
+  const jar = await cookies();
+  const value = jar.get("locale")?.value;
+  if (value === "tr" || value === "en") return value;
+  return defaultLocale === "tr" ? "tr" : "en";
+}
+
+export function tMap(rows: { key: string; value: string }[]) {
+  return Object.fromEntries(rows.map((r) => [r.key, r.value]));
+}
+
+export function applySettingTranslations<T extends Record<string, unknown>>(
+  settings: T,
+  map: Record<string, string>,
+): T {
+  const next = { ...settings };
+  for (const key of SETTING_TRANSLATION_KEYS) {
+    const translated = map[`settings.${key}`];
+    if (translated) (next as Record<string, unknown>)[key] = translated;
+  }
+  return next;
+}

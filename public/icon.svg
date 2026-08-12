@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="MFA">
+  <rect width="100" height="100" fill="#10243f"/>
+  <circle cx="50" cy="50" r="22" fill="none" stroke="#43587a" stroke-width="1.5"/>
+  <ellipse cx="50" cy="50" rx="9" ry="22" fill="none" stroke="#43587a" stroke-width="1.5"/>
+  <rect x="30" y="44" width="40" height="12" fill="#10243f"/>
+  <rect x="32" y="44" width="36" height="1" fill="#9a7b3f"/>
+  <rect x="32" y="55" width="36" height="1" fill="#9a7b3f"/>
+  <text x="50" y="53.5" text-anchor="middle" font-family="Georgia, serif" font-size="9" font-weight="600" fill="#ffffff" letter-spacing="0.8">MFA</text>
+</svg>
