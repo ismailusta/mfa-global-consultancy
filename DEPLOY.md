@@ -92,6 +92,13 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...
 SUPABASE_MEDIA_BUCKET=media
 AUTH_SECRET=uzun-rastgele-secret
+SMTP_HOST=smtp.hostinger.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=info@mfaglobalconsultancy.com
+SMTP_PASS=mailbox-sifresi
+MAIL_FROM=info@mfaglobalconsultancy.com
+MAIL_TO=info@mfaglobalconsultancy.com
 ```
 
 ### SEO (canlı sonrası)
