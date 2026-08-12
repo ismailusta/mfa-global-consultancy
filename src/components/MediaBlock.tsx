@@ -13,14 +13,17 @@ export function MediaBlock({ url, label, className = "", dark, height = 280 }: P
       <img
         src={url}
         alt={label || ""}
-        className={className}
-        style={{ width: "100%", height, objectFit: "cover", display: "block", border: "1px solid var(--line)" }}
+        className={`media-block ${className}`}
+        style={{ height, maxHeight: "min(420px, 55vh)" }}
       />
     );
   }
 
   return (
-    <div className={`placeholder-media ${dark ? "dark" : ""} ${className}`} style={{ height, width: "100%" }}>
+    <div
+      className={`placeholder-media ${dark ? "dark" : ""} ${className}`}
+      style={{ height, maxHeight: "min(420px, 55vh)" }}
+    >
       <span>{label || "[ image ]"}</span>
     </div>
   );

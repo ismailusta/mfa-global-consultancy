@@ -16,6 +16,9 @@ async function main() {
     },
   });
 
+  const companyAddress =
+    "5830 E 2nd St, Ste 7000\nCasper, Wyoming (WY) 82609\nUnited States";
+
   await prisma.siteSettings.upsert({
     where: { id: "main" },
     update: {
@@ -27,6 +30,11 @@ async function main() {
         "MFA Global Consultancy, visa application assistance, document preparation, e-commerce, Wyoming LLC, dropshipping",
       defaultLocale: "en",
       enableTr: true,
+      registeredAddress: companyAddress,
+      businessAddress: companyAddress,
+      footerNote: `Casper, Wyoming, United States\n5830 E 2nd St, Ste 7000\nCasper, WY 82609\ninfo@mfaglobalconsultancy.com`,
+      aboutAsideNote:
+        "The address above is the company's address of record with the State of Wyoming.",
     },
     create: {
       id: "main",
@@ -38,15 +46,15 @@ async function main() {
       topBarLeft: "Registered in the State of Wyoming, United States",
       topBarRight: "info@mfaglobalconsultancy.com",
       email: "info@mfaglobalconsultancy.com",
-      phone: "[+1 phone number]",
-      registeredAddress: "[Registered agent address], Sheridan, WY 82801",
-      businessAddress: "[Trading / operating address]",
+      phone: "",
+      registeredAddress: companyAddress,
+      businessAddress: companyAddress,
       jurisdiction: "State of Wyoming, United States",
       entityType: "Limited Liability Company",
       legalName: "MFA GLOBAL CONSULTANCY LLC",
       ein: "[EIN number]",
       businessHours: "Monday – Friday, 09:00 – 18:00 (UTC+3)",
-      footerNote: "Wyoming, United States\n[Registered agent address]\nSheridan, WY 82801\ninfo@mfaglobalconsultancy.com",
+      footerNote: `Casper, Wyoming, United States\n5830 E 2nd St, Ste 7000\nCasper, WY 82609\ninfo@mfaglobalconsultancy.com`,
       copyrightText: "© 2026 MFA Global Consultancy LLC. All rights reserved.",
       disclaimerLine: "A private company. Not a government body or agency.",
       heroEyebrow: "Wyoming, United States",
@@ -76,7 +84,7 @@ async function main() {
         "All fees are charged for our own preparation and handling work. Official government fees, where applicable, are separate and are payable to the relevant authority.",
       ]),
       aboutAsideNote:
-        "The registered address above is the company's address of record with the State of Wyoming. Day-to-day operations are carried out from the principal place of business.",
+        "The address above is the company's address of record with the State of Wyoming.",
       aboutImageLabel: "[ image: workplace photograph ]",
       servicesEyebrow: "Services",
       servicesTitle: "Our lines of business",
@@ -207,7 +215,7 @@ async function main() {
   await prisma.stat.deleteMany();
   await prisma.stat.createMany({
     data: [
-      { value: "2024", label: "Year established", sortOrder: 1 },
+      { value: "2026", label: "Year established", sortOrder: 1 },
       { value: "5", label: "Service lines", sortOrder: 2 },
       { value: "Remote", label: "Operating model", sortOrder: 3 },
       { value: "EN / TR", label: "Support languages", sortOrder: 4 },

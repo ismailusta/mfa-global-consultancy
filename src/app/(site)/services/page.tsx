@@ -47,10 +47,10 @@ export default async function ServicesPage() {
       </section>
       <section className="container" style={{ paddingTop: 20, paddingBottom: 90 }}>
         {services.map((d) => (
-          <div key={d.id} style={{ display: "grid", gridTemplateColumns: "0.35fr 0.65fr", gap: 56, padding: "46px 0", borderBottom: "1px solid var(--line)" }}>
+          <div key={d.id} className="grid-service-row">
             <div>
               <div style={{ fontFamily: "var(--mono)", fontSize: 11.5, color: "var(--gold)", letterSpacing: "0.1em", marginBottom: 12 }}>{d.number}</div>
-              <h2 style={{ fontFamily: "var(--serif)", fontSize: 25, fontWeight: 600, margin: 0, color: "var(--navy)", lineHeight: 1.3 }}>{d.title}</h2>
+              <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(22px, 4vw, 25px)", fontWeight: 600, margin: 0, color: "var(--navy)", lineHeight: 1.3 }}>{d.title}</h2>
             </div>
             <div>
               <p style={{ fontSize: 16, lineHeight: 1.85, color: "var(--muted)", margin: "0 0 22px" }}>{d.body}</p>
@@ -63,7 +63,6 @@ export default async function ServicesPage() {
           </div>
         ))}
       </section>
-      <style>{`@media (max-width: 800px) { .container > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; gap: 18px !important; } }`}</style>
     </div>
   );
 }

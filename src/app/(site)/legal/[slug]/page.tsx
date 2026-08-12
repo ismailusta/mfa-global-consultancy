@@ -42,7 +42,7 @@ export default async function LegalPage({ params }: { params: Promise<{ slug: st
           <p style={{ fontSize: 14, color: "var(--soft)", margin: 0 }}>Last updated: {settings.legalUpdatedAt}</p>
         </div>
       </section>
-      <section style={{ maxWidth: 820, margin: "0 auto", padding: "64px 32px 90px" }}>
+      <section className="container section-pad" style={{ maxWidth: 820 }}>
         {page.sections.map((sec) => (
           <div key={sec.h} style={{ marginBottom: 38 }}>
             <h2 style={{ fontFamily: "var(--serif)", fontSize: 21, fontWeight: 600, margin: "0 0 14px", color: "var(--navy)" }}>{sec.h}</h2>

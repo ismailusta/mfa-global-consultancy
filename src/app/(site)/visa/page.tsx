@@ -53,14 +53,14 @@ export default async function VisaPage() {
         </div>
       </section>
 
-      <section className="container" style={{ paddingTop: 60, paddingBottom: 30, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "var(--line)", border: "1px solid var(--line)" }}>
-        <div style={{ background: "#fff", padding: "38px 34px" }}>
+      <section className="container grid-2-tight" style={{ paddingTop: 60, paddingBottom: 0 }}>
+        <div style={{ background: "#fff", padding: "28px 24px" }}>
           <h3 style={{ fontFamily: "var(--serif)", fontSize: 22, margin: "0 0 16px", color: "var(--navy)" }}>{settings.visaAssistTitle}</h3>
           <ul style={{ margin: 0, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 10, fontSize: 15, lineHeight: 1.7, color: "var(--muted)" }}>
             {assist.map((p) => <li key={p}>{p}</li>)}
           </ul>
         </div>
-        <div style={{ background: "#fff", padding: "38px 34px" }}>
+        <div style={{ background: "#fff", padding: "28px 24px" }}>
           <h3 style={{ fontFamily: "var(--serif)", fontSize: 22, margin: "0 0 16px", color: "var(--navy)" }}>{settings.visaDocTitle}</h3>
           <ul style={{ margin: 0, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 10, fontSize: 15, lineHeight: 1.7, color: "var(--muted)" }}>
             {docs.map((p) => <li key={p}>{p}</li>)}
@@ -68,18 +68,17 @@ export default async function VisaPage() {
         </div>
       </section>
 
-      <section className="container" style={{ paddingTop: 50, paddingBottom: 90 }}>
+      <section className="container section-pad">
         <h3 style={{ fontFamily: "var(--serif)", fontSize: 24, margin: "0 0 28px", color: "var(--navy)" }}>Process</h3>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "var(--line)", border: "1px solid var(--line)" }}>
+        <div className="grid-4-tight">
           {visaSteps.map((step) => (
-            <div key={step.id} style={{ background: "#fff", padding: "28px 24px" }}>
+            <div key={step.id} style={{ background: "#fff", padding: "24px 20px" }}>
               <div style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--gold)", marginBottom: 10 }}>{step.code}</div>
               <div style={{ fontSize: 14.5, lineHeight: 1.7, color: "var(--muted)" }}>{step.text}</div>
             </div>
           ))}
         </div>
       </section>
-      <style>{`@media (max-width: 900px) { .container[style*="grid-template-columns"], .container > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; } }`}</style>
     </div>
   );
 }

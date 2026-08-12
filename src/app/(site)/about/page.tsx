@@ -35,7 +35,7 @@ export default async function AboutPage() {
           </h1>
         </div>
       </section>
-      <section className="container" style={{ paddingTop: 70, paddingBottom: 90, display: "grid", gridTemplateColumns: "1.3fr 0.7fr", gap: 64 }}>
+      <section className="container grid-about section-pad">
         <div>
           {paragraphs.map((p) => (
             <p key={p.slice(0, 24)} style={{ fontSize: 16.5, lineHeight: 1.85, color: "var(--muted)", margin: "0 0 22px" }}>
@@ -52,13 +52,12 @@ export default async function AboutPage() {
                 ["Legal name", settings.legalName],
                 ["Entity type", settings.entityType],
                 ["Jurisdiction", settings.jurisdiction],
-                ["Registered address", settings.registeredAddress],
-                ["Principal place of business", settings.businessAddress],
+                ["Address", settings.registeredAddress],
                 ["EIN", settings.ein],
               ].map(([label, value]) => (
                 <div key={label}>
                   <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--soft)", marginBottom: 5 }}>{label}</div>
-                  {value}
+                  <div style={{ overflowWrap: "anywhere" }}>{value}</div>
                 </div>
               ))}
             </div>
@@ -68,7 +67,6 @@ export default async function AboutPage() {
           </div>
         </aside>
       </section>
-      <style>{`@media (max-width: 900px) { .container[style*="grid-template-columns"] { grid-template-columns: 1fr !important; } }`}</style>
     </div>
   );
 }

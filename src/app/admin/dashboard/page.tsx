@@ -12,7 +12,7 @@ export default async function AdminDashboardPage() {
     <AdminShell active="/admin/dashboard">
       <h1 style={h1}>Özet</h1>
       <p style={sub}>Panele hoş geldiniz. Soldaki menüden tüm site içeriğini düzenleyebilirsiniz.</p>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16, marginTop: 28 }}>
+      <div className="grid-3-gap" style={{ marginTop: 28 }}>
         {[
           ["Okunmamış mesaj", String(unread)],
           ["Toplam mesaj", String(messages)],

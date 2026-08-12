@@ -39,14 +39,14 @@ export default async function CommercePage() {
         </div>
       </section>
 
-      <section className="container" style={{ paddingTop: 70, paddingBottom: 40, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "var(--line)", border: "1px solid var(--line)" }}>
-        <div style={{ background: "#fff", padding: "38px 34px" }}>
+      <section className="container grid-2-tight" style={{ paddingTop: 70, paddingBottom: 0, marginBottom: 0 }}>
+        <div style={{ background: "#fff", padding: "28px 24px" }}>
           <h3 style={{ fontFamily: "var(--serif)", fontSize: 22, margin: "0 0 14px", color: "var(--navy)" }}>Product categories</h3>
           <ul style={{ margin: 0, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 9, fontSize: 15, lineHeight: 1.7, color: "var(--muted)" }}>
             {categories.map((c) => <li key={c}>{c}</li>)}
           </ul>
         </div>
-        <div style={{ background: "#fff", padding: "38px 34px" }}>
+        <div style={{ background: "#fff", padding: "28px 24px" }}>
           <h3 style={{ fontFamily: "var(--serif)", fontSize: 22, margin: "0 0 14px", color: "var(--navy)" }}>Sales channels</h3>
           <ul style={{ margin: 0, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 9, fontSize: 15, lineHeight: 1.7, color: "var(--muted)" }}>
             {channels.map((c) => <li key={c}>{c}</li>)}
@@ -55,14 +55,14 @@ export default async function CommercePage() {
       </section>
 
       <section className="container" style={{ paddingTop: 36, paddingBottom: 0 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+        <div className="grid-3-gap">
           {(["product1", "product2", "product3"] as const).map((key) => (
             <MediaBlock key={key} url={media[key]?.url} label={media[key]?.label} height={180} />
           ))}
         </div>
       </section>
 
-      <section className="container" style={{ paddingTop: 60, paddingBottom: 90, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56 }}>
+      <section className="container grid-2 section-pad">
         <div>
           <h3 style={{ fontFamily: "var(--serif)", fontSize: 22, margin: "0 0 14px", color: "var(--navy)" }}>{settings.commerceProcessTitle}</h3>
           {processParas.map((p) => (
@@ -76,7 +76,6 @@ export default async function CommercePage() {
           ))}
         </div>
       </section>
-      <style>{`@media (max-width: 900px) { .container[style*="grid-template-columns"], .container > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; } }`}</style>
     </div>
   );
 }

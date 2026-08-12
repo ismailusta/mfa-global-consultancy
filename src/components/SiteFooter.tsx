@@ -25,7 +25,7 @@ export function SiteFooter({
 
   return (
     <footer style={{ background: "var(--navy)", color: "var(--topbar)" }}>
-      <div className="container" style={{ paddingTop: 64, paddingBottom: 40, display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 48 }}>
+      <div className="container grid-footer" style={{ paddingTop: 64, paddingBottom: 40 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
             <LogoMark shortName={shortName} variant="light" size={44} imageUrl={logoUrl} alt={companyName} />
@@ -67,20 +67,24 @@ export function SiteFooter({
         </div>
       </div>
       <div style={{ borderTop: "1px solid #23375a" }}>
-        <div className="container" style={{ paddingTop: 22, paddingBottom: 22, display: "flex", justifyContent: "space-between", gap: 24, flexWrap: "wrap", fontSize: 12.5, color: "var(--footer-muted)" }}>
+        <div
+          className="container"
+          style={{
+            paddingTop: 22,
+            paddingBottom: 22,
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 16,
+            flexWrap: "wrap",
+            fontSize: 12.5,
+            color: "var(--footer-muted)",
+          }}
+        >
           <span>{copyrightText}</span>
           <span>{disclaimerLine}</span>
         </div>
       </div>
-      <style>{`
-        footer a:hover { color: var(--gold); }
-        @media (max-width: 900px) {
-          footer .container { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 600px) {
-          footer .container { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
+      <style>{`footer a:hover { color: var(--gold); }`}</style>
     </footer>
   );
 }

@@ -1,8 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { prisma } from "@/lib/prisma";
 import { getSiteUrl } from "@/lib/site";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],

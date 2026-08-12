@@ -42,24 +42,21 @@ export default async function ContactPage() {
           </h1>
         </div>
       </section>
-      <section className="container" style={{ paddingTop: 70, paddingBottom: 90, display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 64 }}>
+      <section className="container grid-contact section-pad">
         <div style={{ display: "flex", flexDirection: "column", gap: 26, fontSize: 15, lineHeight: 1.75, color: "var(--muted)" }}>
           {[
             [locale === "tr" ? "E-posta" : "Email", settings.email],
-            [locale === "tr" ? "Telefon" : "Telephone", settings.phone],
-            [locale === "tr" ? "Kayıtlı adres" : "Registered address", `${settings.legalName}\n${settings.registeredAddress}\nUnited States`],
-            [locale === "tr" ? "İş adresi" : "Principal place of business", settings.businessAddress],
+            [locale === "tr" ? "Adres" : "Address", `${settings.legalName}\n${settings.registeredAddress}`],
             [locale === "tr" ? "Çalışma saatleri" : "Business hours", settings.businessHours],
           ].map(([label, value]) => (
             <div key={label}>
               <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--soft)", marginBottom: 6 }}>{label}</div>
-              <div style={{ whiteSpace: "pre-line" }}>{value}</div>
+              <div style={{ whiteSpace: "pre-line", overflowWrap: "anywhere" }}>{value}</div>
             </div>
           ))}
         </div>
         <ContactForm note={settings.contactFormNote} locale={locale} />
       </section>
-      <style>{`@media (max-width: 900px) { .container[style*="grid-template-columns"] { grid-template-columns: 1fr !important; } }`}</style>
     </div>
   );
 }

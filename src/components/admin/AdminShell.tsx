@@ -25,7 +25,7 @@ export async function AdminShell({
   if (!user) redirect("/admin/login");
 
   return (
-    <div className="admin-shell" style={{ minHeight: "100vh", display: "grid", gridTemplateColumns: "260px 1fr", background: "var(--sand)" }}>
+    <div className="admin-shell">
       <aside style={{ background: "var(--navy)", color: "#fff", padding: "28px 20px", position: "sticky", top: 0, height: "100vh", overflow: "auto" }}>
         <div className="eyebrow" style={{ color: "var(--gold)", marginBottom: 10 }}>
           MFA Admin
@@ -57,13 +57,7 @@ export async function AdminShell({
         </div>
         <div style={{ marginTop: 24, fontSize: 12, color: "var(--footer-muted)" }}>{user.email}</div>
       </aside>
-      <div style={{ padding: "28px 32px 60px", minWidth: 0 }}>{children}</div>
-      <style>{`
-        @media (max-width: 900px) {
-          .admin-shell { grid-template-columns: 1fr !important; }
-          .admin-shell aside { position: relative !important; height: auto !important; }
-        }
-      `}</style>
+      <div style={{ padding: "20px 16px 60px", minWidth: 0, overflowX: "auto" }}>{children}</div>
     </div>
   );
 }

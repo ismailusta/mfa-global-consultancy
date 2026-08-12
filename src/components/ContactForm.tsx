@@ -57,10 +57,10 @@ export function ContactForm({ note, locale = "en" }: { note: string; locale?: st
   }
 
   return (
-    <form onSubmit={onSubmit} style={{ border: "1px solid var(--line)", padding: "38px 36px" }}>
+    <form onSubmit={onSubmit} className="contact-form">
       <h3 style={{ fontFamily: "var(--serif)", fontSize: 22, margin: "0 0 24px", color: "var(--navy)" }}>{t.title}</h3>
       <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-        <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+        <div className="contact-grid">
           <label>
             <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--soft)", marginBottom: 8 }}>{t.name}</div>
             <input name="name" required style={inputStyle} />
@@ -85,11 +85,6 @@ export function ContactForm({ note, locale = "en" }: { note: string; locale?: st
         {status === "error" && <div style={{ fontSize: 13, color: "#a33" }}>{error}</div>}
         <div style={{ fontSize: 13, lineHeight: 1.7, color: "var(--soft)" }}>{note}</div>
       </div>
-      <style>{`
-        @media (max-width: 700px) {
-          .contact-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </form>
   );
 }

@@ -56,14 +56,14 @@ export function SiteHeader({
               paddingBottom: 9,
               display: "flex",
               justifyContent: "space-between",
-              gap: "6px 24px",
+              gap: "6px 16px",
               flexWrap: "wrap",
               alignItems: "center",
             }}
           >
-            <span>{topBarLeft}</span>
-            <div style={{ display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap" }}>
-              <span>{topBarRight}</span>
+            <span style={{ minWidth: 0, overflowWrap: "anywhere" }}>{topBarLeft}</span>
+            <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+              <span style={{ minWidth: 0, overflowWrap: "anywhere" }}>{topBarRight}</span>
               <LanguageSwitcher locale={locale} enabled={enableTr} />
             </div>
           </div>
@@ -73,46 +73,29 @@ export function SiteHeader({
         className="site-header"
         style={{ borderBottom: "1px solid var(--line)", background: "#fff", position: "sticky", top: 0, zIndex: 20 }}
       >
-        <div
-          className="container site-header-inner"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "12px 32px",
-            flexWrap: "wrap",
-          }}
-        >
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px 0", flex: "0 0 auto" }}>
-            <LogoMark shortName={shortName} imageUrl={logoUrl} alt={companyName} />
-            <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
-              <div
-                style={{
-                  fontFamily: "var(--serif)",
-                  fontSize: 18,
-                  fontWeight: 600,
-                  color: "var(--navy)",
-                  letterSpacing: "0.02em",
-                  lineHeight: 1,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {companyName}
-              </div>
-              <div style={{ fontSize: 11, letterSpacing: "0.16em", color: "var(--soft)", textTransform: "uppercase" }}>
-                {tagline}
-              </div>
+        <div className="container site-header-inner">
+          <Link href="/" className="brand-link">
+            <LogoMark shortName={shortName} imageUrl={logoUrl} alt={companyName} size={40} />
+            <div className="brand-text">
+              <div className="brand-name">{companyName}</div>
+              <div className="brand-tagline">{tagline}</div>
             </div>
           </Link>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="header-actions">
             {!showTopBar && (
               <div style={{ color: "var(--navy)" }}>
                 <LanguageSwitcher locale={locale} enabled={enableTr} />
               </div>
             )}
-            <button type="button" className="nav-toggle" onClick={() => setOpen((v) => !v)} aria-label="Menü">
-              Menü
+            <button
+              type="button"
+              className="nav-toggle"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={locale === "tr" ? "Menü" : "Menu"}
+              aria-expanded={open}
+            >
+              {locale === "tr" ? (open ? "Kapat" : "Menü") : open ? "Close" : "Menu"}
             </button>
           </div>
 
@@ -125,7 +108,7 @@ export function SiteHeader({
                   href={item.href}
                   className="site-nav-link"
                   style={{
-                    borderBottomColor: active ? "var(--gold)" : "transparent",
+                    borderBottomColor: active ? "var(--gold)" : undefined,
                     color: active ? "var(--navy)" : "#5c6570",
                   }}
                 >
