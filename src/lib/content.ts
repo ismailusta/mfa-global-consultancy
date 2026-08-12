@@ -1,10 +1,10 @@
 import { prisma } from "./prisma";
 import {
   applySettingTranslations,
-  getRequestLocale,
   tMap,
   type Locale,
 } from "./i18n";
+import { getRequestLocale } from "./i18n.server";
 
 export function parseJsonArray(value: string | null | undefined): string[] {
   if (!value) return [];

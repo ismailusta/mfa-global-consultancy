@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 export type Locale = "en" | "tr";
 
 export const LOCALES: Locale[] = ["en", "tr"];
@@ -113,13 +111,6 @@ export const SETTING_KEY_LABELS_TR: Record<string, string> = {
   entityType: "Şirket tipi",
   jurisdiction: "Yargı yetkisi",
 };
-
-export async function getRequestLocale(defaultLocale: Locale = "en"): Promise<Locale> {
-  const jar = await cookies();
-  const value = jar.get("locale")?.value;
-  if (value === "tr" || value === "en") return value;
-  return defaultLocale === "tr" ? "tr" : "en";
-}
 
 export function tMap(rows: { key: string; value: string }[]) {
   return Object.fromEntries(rows.map((r) => [r.key, r.value]));
