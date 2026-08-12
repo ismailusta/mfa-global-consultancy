@@ -4,7 +4,7 @@
 
 - **Hostinger**: Next.js (Node.js Web App) — site + admin panel
 - **Supabase Postgres**: tüm dinamik içerik (Prisma)
-- **Supabase Storage**: görseller (`site-media` bucket)
+- **Supabase Storage**: görseller (`media` bucket)
 
 ---
 
@@ -19,10 +19,10 @@
 
 ### Storage
 1. Supabase → **Storage → New bucket**
-2. Bucket adı: `site-media`
+2. Bucket adı: `media`
 3. **Public bucket** işaretle
 4. Policies (public read + service role write yeterli):
-   - Public: `SELECT` for everyone on `site-media`
+   - Public: `SELECT` for everyone on `media`
    - Upload’lar server tarafında **service role** ile yapılır
 
 ### API keys
@@ -43,8 +43,13 @@ npm run db:setup
 npm run dev
 ```
 
-Admin: `admin@mfaglobalconsultancy.com` / `admin123`  
-İlk girişten sonra şifreyi değiştirmen önerilir.
+Storage için Supabase **S3 Access Keys** kullanılır:
+- `SUPABASE_S3_ENDPOINT`
+- `SUPABASE_S3_REGION`
+- `SUPABASE_S3_ACCESS_KEY_ID`
+- `SUPABASE_S3_SECRET_ACCESS_KEY`
+
+Bucket adı: `media` (Supabase Storage’da public olmalı).
 
 ---
 
@@ -85,7 +90,7 @@ DIRECT_URL=...
 NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...
-SUPABASE_MEDIA_BUCKET=site-media
+SUPABASE_MEDIA_BUCKET=media
 AUTH_SECRET=uzun-rastgele-secret
 ```
 

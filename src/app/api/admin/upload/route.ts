@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSessionUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getSupabaseAdmin, MEDIA_BUCKET, publicMediaUrl } from "@/lib/supabase";
+import { uploadMediaObject } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
@@ -26,18 +26,13 @@ export async function POST(req: Request) {
     const ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
     const path = `${key}/${Date.now()}.${ext || "jpg"}`;
     const buffer = Buffer.from(await file.arrayBuffer());
-    const supabase = getSupabaseAdmin();
 
-    const { error: uploadError } = await supabase.storage.from(MEDIA_BUCKET).upload(path, buffer, {
+    const url = await uploadMediaObject({
+      path,
+      body: buffer,
       contentType: file.type || "application/octet-stream",
-      upsert: true,
     });
 
-    if (uploadError) {
-      return NextResponse.json({ error: uploadError.message }, { status: 500 });
-    }
-
-    const url = publicMediaUrl(path);
     const media = await prisma.mediaAsset.upsert({
       where: { key },
       update: { url, label: label || undefined },
