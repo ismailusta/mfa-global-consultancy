@@ -289,10 +289,15 @@ p {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 18px 0;
+  padding: 14px 0;
   flex: 1 1 auto;
   min-width: 0;
   max-width: calc(100% - 100px);
+}
+
+.site-logo {
+  height: auto;
+  max-height: none;
 }
 
 .brand-text {

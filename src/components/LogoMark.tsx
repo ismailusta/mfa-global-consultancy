@@ -13,15 +13,16 @@ export function LogoMark({ shortName, variant = "dark", size = 48, imageUrl, alt
       <img
         src={imageUrl}
         alt={alt || shortName}
-        width={size}
-        height={size}
+        className="site-logo"
         style={{
-          width: size,
           height: size,
+          width: "auto",
+          maxWidth: Math.round(size * 5.2),
           objectFit: "contain",
           flex: "0 0 auto",
           display: "block",
-          borderRadius: 8,
+          // Dark navy wordmark on footer navy: brighten for readability
+          filter: variant === "light" ? "brightness(0) invert(1)" : undefined,
         }}
       />
     );

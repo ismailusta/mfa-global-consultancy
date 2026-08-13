@@ -75,11 +75,13 @@ export function SiteHeader({
       >
         <div className="container site-header-inner">
           <Link href="/" className="brand-link">
-            <LogoMark shortName={shortName} imageUrl={logoUrl} alt={companyName} size={40} />
-            <div className="brand-text">
-              <div className="brand-name">{companyName}</div>
-              <div className="brand-tagline">{tagline}</div>
-            </div>
+            <LogoMark shortName={shortName} imageUrl={logoUrl} alt={companyName} size={logoUrl ? 52 : 40} />
+            {!logoUrl && (
+              <div className="brand-text">
+                <div className="brand-name">{companyName}</div>
+                <div className="brand-tagline">{tagline}</div>
+              </div>
+            )}
           </Link>
 
           <div className="header-actions">

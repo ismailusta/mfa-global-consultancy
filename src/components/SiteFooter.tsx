@@ -28,12 +28,14 @@ export function SiteFooter({
       <div className="container grid-footer" style={{ paddingTop: 64, paddingBottom: 40 }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-            <LogoMark shortName={shortName} variant="light" size={44} imageUrl={logoUrl} alt={companyName} />
-            <div style={{ fontFamily: "var(--serif)", fontSize: 16, color: "#fff", lineHeight: 1.3 }}>
-              {brandLines.map((l) => (
-                <div key={l}>{l}</div>
-              ))}
-            </div>
+            <LogoMark shortName={shortName} variant="light" size={logoUrl ? 56 : 44} imageUrl={logoUrl} alt={companyName} />
+            {!logoUrl && (
+              <div style={{ fontFamily: "var(--serif)", fontSize: 16, color: "#fff", lineHeight: 1.3 }}>
+                {brandLines.map((l) => (
+                  <div key={l}>{l}</div>
+                ))}
+              </div>
+            )}
           </div>
           <div style={{ fontSize: 14, lineHeight: 1.8 }}>
             {lines.map((line) => (
